@@ -1,7 +1,7 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace ZooView.ViewModel
 {
@@ -16,14 +16,14 @@ namespace ZooView.ViewModel
                 {
                     connection.CreateTable<Animal>();
                     connection.CreateTable<Individ>();
-                    connection.CreateTable<MainIstoric>();
+                    connection.CreateTable<MainHistory>();
                     connection.CreateTable<Main>();
                     connection.CreateTable<ZooInfo>();
-                    connection.CreateTable<PozaIndivid>();
+                    connection.CreateTable<IndividImages>();
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -39,7 +39,7 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -56,13 +56,13 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
         }
 
-        public bool insertIntoTableMainIstoric(MainIstoric individ)
+        public bool insertIntoTableMainIstoric(MainHistory individ)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -88,13 +88,13 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
         }
 
-        public bool insertIntoTablePozaIndivid(PozaIndivid individ)
+        public bool insertIntoTablePozaIndivid(IndividImages individ)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -120,7 +120,7 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -137,7 +137,7 @@ namespace ZooView.ViewModel
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -153,23 +153,23 @@ namespace ZooView.ViewModel
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
         }
 
-        public List<MainIstoric> selectTableMainIstoric()
+        public List<MainHistory> selectTableMainIstoric()
         {
             try
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
-                    return connection.Table<MainIstoric>().ToList();
+                    return connection.Table<MainHistory>().ToList();
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -185,23 +185,23 @@ namespace ZooView.ViewModel
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
         }
 
-        public List<PozaIndivid> selectTablePozaIndivid()
+        public List<IndividImages> selectTablePozaIndivid()
         {
             try
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
-                    return connection.Table<PozaIndivid>().ToList();
+                    return connection.Table<IndividImages>().ToList();
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -217,7 +217,7 @@ namespace ZooView.ViewModel
 
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -234,7 +234,7 @@ namespace ZooView.ViewModel
                     return true;
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
             }
@@ -249,7 +249,7 @@ namespace ZooView.ViewModel
                     return connection.Query<Animal>("SELECT * FROM Animal Where Id=?", Id).First();
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -264,7 +264,7 @@ namespace ZooView.ViewModel
                     return connection.Query<Individ>("SELECT * FROM Individ Where Id=?", Id).First();
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }
@@ -279,7 +279,7 @@ namespace ZooView.ViewModel
                     return connection.Query<Main>("SELECT * FROM Main Where Ancora=?", Id).First();
                 }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return null;
             }

@@ -16,9 +16,6 @@ using SampleXamarin.AnchorSharing;
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using Zoo.Models;
-using ZooView.View;
-using ZooView.ViewModel;
 using Color = Android.Graphics.Color;
 
 namespace SampleXamarin
@@ -126,7 +123,6 @@ namespace SampleXamarin
                         {
                             this.AnchorLookedUp(response.AnchorId);
                             Intent intent = new Intent(this, typeof(AnimalActivity));
-
                             intent.PutExtra("anchor", response.AnchorId);
                             this.StartActivity(intent);
 

@@ -13,7 +13,7 @@ using Android.Widget;
 using Java.Lang;
 using Newtonsoft.Json;
 using SampleXamarin.Adapters;
-using Zoo.Models;
+using Zoo19._07.Models;
 using ZooView.ViewModel;
 
 namespace SampleXamarin
@@ -78,11 +78,11 @@ namespace SampleXamarin
             var anchor = Intent.GetStringExtra("anchor");
 
             var main = GetMains(anchor);
-            var individ = GetIndivid(main.Idindivid.Value);
-            var animal = GetAnimal(individ.Idanimal.Value);
+            var individ = GetIndivid(main.Idindivid);
+            var animal = GetAnimal(individ.Idanimal);
 
             AnimalAdapter adapter = new AnimalAdapter(this, new List<Animal>() { animal });
-            ListView.SetAdapter(adapter);
+            ListView.Adapter = adapter;
         }
 
     }

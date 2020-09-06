@@ -11,7 +11,7 @@ namespace SampleXamarin
         /// <remarks>
         /// Set this to your account id found in the Azure Portal.
         /// </remarks>
-        public const string SpatialAnchorsAccountId = "322ed036-41e1-459d-9cab-3deb82d75bb4";
+        public const string SpatialAnchorsAccountId = "fa1917e0-321c-427c-a95f-43cc32c32950";
 
         /// <summary>
         /// The Azure Spatial Anchors account key.
@@ -20,7 +20,7 @@ namespace SampleXamarin
         /// <remarks>
         /// Set this to your account key found in the Azure Portal.
         /// </remarks>
-        public const string SpatialAnchorsAccountKey = "qx7hEcuI50CK4K/hrr3SXILmdAMuH2mzyD69uOt4+ac=";
+        public const string SpatialAnchorsAccountKey = "Gg4cVd24I5rUy8y6grCoYSke+wgeVwos7p4QXvftObg=";
 
         /// <summary>
         /// The Azure Spatial Anchors account domain.

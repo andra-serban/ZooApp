@@ -12,7 +12,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace SampleXamarin.Adapters
 {
@@ -50,10 +50,10 @@ namespace SampleXamarin.Adapters
                 view = context.LayoutInflater.Inflate(Resource.Layout.AnimalLayout, null);
 
             view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Specie;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = item.NumeComun;
-            view.FindViewById<TextView>(Resource.Id.Text3).Text = item.GreutateMaxima.ToString() + " kg";
+            view.FindViewById<TextView>(Resource.Id.Text2).Text = item.CommonName;
+            view.FindViewById<TextView>(Resource.Id.Text3).Text = item.MaxWeight.ToString() + " kg";
 
-            var imageBitmap = GetImageBitmapFromUrl(item.Poza);
+            var imageBitmap = GetImageBitmapFromUrl(item.Image);
             view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(imageBitmap);
             return view;
         }
