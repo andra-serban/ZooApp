@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SQLite;
 
-namespace Zoo19._07.Models
+namespace Zoo.Models
 {
     public partial class IndividImages
     {
+        [PrimaryKey, Unique]
         public int Idindivid { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
@@ -17,7 +17,5 @@ namespace Zoo19._07.Models
         public string Image9 { get; set; }
         public string Image10 { get; set; }
         public string Description { get; set; }
-
-        public virtual Individ Individ { get; set; }
     }
 }

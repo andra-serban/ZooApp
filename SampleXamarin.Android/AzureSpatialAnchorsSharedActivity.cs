@@ -11,11 +11,14 @@ using Android.Widget;
 using Google.AR.Core;
 using Google.AR.Sceneform;
 using Google.AR.Sceneform.UX;
+using Java.Util;
 using Microsoft.Azure.SpatialAnchors;
 using SampleXamarin.AnchorSharing;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AlertDialog = Android.App.AlertDialog;
 using Color = Android.Graphics.Color;
 
 namespace SampleXamarin
@@ -103,7 +106,7 @@ namespace SampleXamarin
 
         public void OnLocateButtonClicked(object sender, EventArgs args)
         {
-            
+
             if (this.currentStep == DemoStep.Start)
             {
                 this.currentStep = DemoStep.EnterAnchorNumber;
@@ -118,18 +121,19 @@ namespace SampleXamarin
                     Task.Run(async () =>
                     {
                         RetrieveAnchorResponse response = await this.anchorSharingServiceClient.RetrieveAnchorIdAsync(inputVal);
-                        
+
                         if (response.AnchorFound)
                         {
                             this.AnchorLookedUp(response.AnchorId);
-                            Intent intent = new Intent(this, typeof(AnimalActivity));
-                            intent.PutExtra("anchor", response.AnchorId);
-                            this.StartActivity(intent);
+                            //Intent intent = new Intent(this, typeof(AnimalActivity));
+                            //intent.PutExtra("anchor", response.AnchorId);
+                            //this.StartActivity(intent);
 
                         }
                         else
                         {
-                            this.RunOnUiThread(() => {
+                            this.RunOnUiThread(() =>
+                            {
                                 this.currentStep = DemoStep.Start;
                                 this.EnableCorrectUIControls();
                                 this.textView.Text = "Anchor number not found or has expired.";
@@ -263,6 +267,19 @@ namespace SampleXamarin
                     if (anchorLocated)
                     {
                         this.textView.Text = "Anchor located!";
+
+                        //Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                        //AlertDialog alert = dialog.Create();
+                        //alert.SetTitle("Alert");
+                        //alert.SetMessage("Activity1 opened");
+                        //alert.SetButton("OK", (c, ev) => {
+
+                        //});
+                        //alert.Show();
+
+                        Intent intent = new Intent(this, typeof(AnimalActivity));
+                        intent.PutExtra("anchor", anchorId);
+                        this.StartActivity(intent);
                     }
                     else
                     {
@@ -406,6 +423,10 @@ namespace SampleXamarin
             this.EnableCorrectUIControls();
             Log.Debug("ASADemo", "creating anchor");
             CloudSpatialAnchor cloudAnchor = new CloudSpatialAnchor();
+
+            Date d1 = new Date(2030, 11, 21);
+            cloudAnchor.Expiration = d1;
+
             visual.CloudAnchor = cloudAnchor;
             cloudAnchor.LocalAnchor = visual.LocalAnchor;
 

@@ -13,6 +13,7 @@ using Java.Interop;
 using Microsoft.Azure.SpatialAnchors;
 using System;
 using System.Collections.Generic;
+using static Android.App.ActionBar;
 
 namespace SampleXamarin
 {
@@ -150,6 +151,7 @@ namespace SampleXamarin
         {
             createdAnchor.SetColor(this, Android.Graphics.Color.Green);
             FragmentHelper.BackToPreviousFragment(this);
+            
         }
 
         public void OnAnchorCreationFailed(AnchorVisual placedAnchor, string errorMessage)
@@ -176,6 +178,7 @@ namespace SampleXamarin
         {
             AnchorVisual visual = new AnchorVisual(arFragment, cloudAnchor);
             visual.SetColor(this, Android.Graphics.Color.Green);
+            
             IDictionary<string, string> properties = cloudAnchor.AppProperties;
             if (properties.ContainsKey("Shape"))
             {
@@ -185,7 +188,9 @@ namespace SampleXamarin
                 }
             }
             visual.AddToScene(arFragment);
+            
         }
+
 
         [Export("OnBackClicked")]
         public void OnBackClicked(View view)

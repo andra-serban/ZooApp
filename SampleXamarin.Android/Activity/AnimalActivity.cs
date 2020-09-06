@@ -13,7 +13,7 @@ using Android.Widget;
 using Java.Lang;
 using Newtonsoft.Json;
 using SampleXamarin.Adapters;
-using Zoo19._07.Models;
+using Zoo.Models;
 using ZooView.ViewModel;
 
 namespace SampleXamarin
@@ -24,7 +24,7 @@ namespace SampleXamarin
         public Main GetMains(string anchorId)
         {
             var client = new HttpClient();
-            string uri = "https://zoo190720200814131500.azurewebsites.net/api/mainsapi/";
+            string uri = "https://zoo-webapp.azurewebsites.net/api/mainsapi/";
             uri += anchorId;
            
             var result = client.GetStringAsync(uri);
@@ -42,7 +42,7 @@ namespace SampleXamarin
         public Individ GetIndivid(int id)
         {
             var client = new HttpClient();
-            var uri = "https://zoo190720200814131500.azurewebsites.net/api/individsapi/";
+            var uri = "https://zoo-webapp.azurewebsites.net/api/individsapi/";
             uri += id;
             var result = client.GetStringAsync(uri);
 
@@ -59,7 +59,7 @@ namespace SampleXamarin
         public Animal GetAnimal(int id)
         {
             var client = new HttpClient();
-            var uri = "https://zoo190720200814131500.azurewebsites.net/api/animalsapi";
+            var uri = "https://zoo-webapp.azurewebsites.net/api/animalsapi";
             uri += "/" + id;
             var result = client.GetStringAsync(uri);
 
@@ -77,9 +77,13 @@ namespace SampleXamarin
 
             var anchor = Intent.GetStringExtra("anchor");
 
-            var main = GetMains(anchor);
-            var individ = GetIndivid(main.Idindivid);
-            var animal = GetAnimal(individ.Idanimal);
+            //var main = GetMains(anchor);
+            //// var individ = GetIndivid(main.Idindivid);
+            //if (main.Idindivid != 1)
+            //{
+            //    throw new System.Exception();
+            //}
+            var animal = GetAnimal(1);
 
             AnimalAdapter adapter = new AnimalAdapter(this, new List<Animal>() { animal });
             ListView.Adapter = adapter;

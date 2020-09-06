@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SQLite;
 
-namespace Zoo19._07.Models
+namespace Zoo.Models
 {
     public partial class ZooInfo
     {
-        public ZooInfo()
-        {
-            Main = new HashSet<Main>();
-            MainHistory = new HashSet<MainHistory>();
-        }
-
+        [PrimaryKey, Unique]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
 
-        public virtual ICollection<Main> Main { get; set; }
-        public virtual ICollection<MainHistory> MainHistory { get; set; }
+
     }
 }

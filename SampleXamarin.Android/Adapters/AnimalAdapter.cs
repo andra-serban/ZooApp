@@ -12,7 +12,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Zoo19._07.Models;
+using Zoo.Models;
 
 namespace SampleXamarin.Adapters
 {

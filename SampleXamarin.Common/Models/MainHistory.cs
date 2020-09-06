@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SQLite;
+using System;
 
-namespace Zoo19._07.Models
+namespace Zoo.Models
 {
     public partial class MainHistory
     {
+        [PrimaryKey, Unique]
         public string Anchor { get; set; }
-        public int Idindivid { get; set; }
-        public int Idzoo { get; set; }
-        public string Data { get; set; }
-
-        public virtual Individ Idindiv { get; set; }
-        public virtual ZooInfo IdzooNavigation { get; set; }
+        public int? Idindivid { get; set; }
+        public int? IdZoo { get; set; }
+        public DateTime? Data { get; set; }
     }
 }

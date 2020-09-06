@@ -63,7 +63,7 @@
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="AnchorCreationFragment.cs" />
     <Compile Include="AnchorPlacementFragment.cs" />
-    <Compile Include="AnimalActivity.cs" />
+    <Compile Include="Activity\AnimalActivity.cs" />
     <Compile Include="AzureSpatialAnchorsCoarseRelocActivity.cs" />
     <Compile Include="AzureSpatialAnchorsManager.cs" />
     <Compile Include="AnchorVisual.cs" />
@@ -169,6 +169,9 @@
     <AndroidResource Include="Resources\layout\AnimalLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Alerts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
