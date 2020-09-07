@@ -106,6 +106,7 @@ namespace SampleXamarin
 
         public void OnLocateButtonClicked(object sender, EventArgs args)
         {
+            
 
             if (this.currentStep == DemoStep.Start)
             {

@@ -74,7 +74,8 @@ namespace SampleXamarin
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            this.SetContentView(Resource.Layout.AnimalLayout);
+            
             var anchor = Intent.GetStringExtra("anchor");
 
             //var main = GetMains(anchor);
@@ -87,7 +88,15 @@ namespace SampleXamarin
 
             AnimalAdapter adapter = new AnimalAdapter(this, new List<Animal>() { animal });
             ListView.Adapter = adapter;
+            Button basicDemoButton = this.FindViewById<Button>(Resource.Id.button1);
+            basicDemoButton.Click += this.OnBackClick;
         }
 
+        public void OnBackClick(object sender, EventArgs e)
+        {
+            //Intent intent = new Intent(this, typeof(AzureSpatialAnchorsSharedActivity));
+            //this.StartActivity(intent);
+            Finish();
+        }
     }
 }
