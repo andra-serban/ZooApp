@@ -13,6 +13,7 @@ using Microsoft.Azure.SpatialAnchors;
 using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
+using static Android.Views.View;
 
 namespace SampleXamarin
 {
@@ -30,7 +31,7 @@ namespace SampleXamarin
         private Material material;
 
         private static Dictionary<int, CompletableFuture> solidColorMaterialCache = new Dictionary<int, CompletableFuture>();
-
+        Context context;
         public AnchorVisual(ArFragment arFragment, Anchor localAnchor)
         {
             AnchorNode = new AnchorNode(localAnchor);
@@ -41,10 +42,28 @@ namespace SampleXamarin
             transformableNode.RotationController.Enabled = false;
             transformableNode.SetParent(AnchorNode);
         }
+        public AnchorVisual(ArFragment arFragment, Anchor localAnchor, Context context)
+        {
+            AnchorNode = new AnchorNode(localAnchor);
+
+            transformableNode = new TransformableNode(arFragment.TransformationSystem);
+            transformableNode.ScaleController.Enabled = false;
+            transformableNode.TranslationController.Enabled = false;
+            transformableNode.RotationController.Enabled = false;
+            transformableNode.SetParent(AnchorNode);
+            this.context = context;
+        }
         public AnchorVisual(ArFragment arFragment, CloudSpatialAnchor cloudAnchor)
             : this(arFragment, cloudAnchor.LocalAnchor)
         {
             CloudAnchor = cloudAnchor;
+        }
+
+        public AnchorVisual(ArFragment arFragment, CloudSpatialAnchor cloudAnchor, Context context)
+            : this(arFragment, cloudAnchor.LocalAnchor)
+        {
+            CloudAnchor = cloudAnchor;
+            this.context = context;
         }
 
         public AnchorNode AnchorNode { get; }
@@ -154,7 +173,8 @@ namespace SampleXamarin
                         throw new InvalidOperationException("Invalid shape");
                 }
                 transformableNode.Renderable = renderable;
+                transformableNode.SetOnTouchListener(new MyTouchListener(context));
             }
         }
-    }
+    }       
 }

@@ -246,7 +246,7 @@ namespace SampleXamarin
                     {
                         anchorLocated = true;
 
-                        AnchorVisual foundVisual = new AnchorVisual(arFragment, anchor.LocalAnchor)
+                        AnchorVisual foundVisual = new AnchorVisual(arFragment, anchor.LocalAnchor, this)
                         {
                             CloudAnchor = anchor
                         };
@@ -277,9 +277,9 @@ namespace SampleXamarin
                         //});
                         //alert.Show();
 
-                        Intent intent = new Intent(this, typeof(AnimalActivity));
-                        intent.PutExtra("anchor", anchorId);
-                        this.StartActivity(intent);
+                        //Intent intent = new Intent(this, typeof(AnimalActivity));
+                        //intent.PutExtra("anchor", anchorId);
+                        //this.StartActivity(intent);
                     }
                     else
                     {
