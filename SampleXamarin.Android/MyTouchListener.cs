@@ -35,10 +35,12 @@ namespace SampleXamarin
 
             //});
             //alert.Show();
-
-            Intent intent = new Intent(context, typeof(AnimalActivity));
-            intent.PutExtra("anchor", identifier);
-            context.StartActivity(intent);
+            if (p1.Action == MotionEventActions.Down)
+            {
+                Intent intent = new Intent(context, typeof(AnimalActivity));
+                intent.PutExtra("anchor", identifier);
+                context.StartActivity(intent);
+            }
             return true;
         }
     }

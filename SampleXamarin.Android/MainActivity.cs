@@ -31,25 +31,6 @@ namespace SampleXamarin
             coarseRelocDemoButton.Click += this.OnCoarseRelocDemoClick;
         }
 
-        public void OnBasicDemoClick(object sender, EventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(AzureSpatialAnchorsActivity));
-            intent.PutExtra("BasicDemo", true);
-            this.StartActivity(intent);
-        }
-
-        public void OnNearbyDemoClick(object sender, EventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(AzureSpatialAnchorsActivity));
-            intent.PutExtra("BasicDemo", false);
-            this.StartActivity(intent);
-        }
-
-        public void OnSharedDemoClick(object sender, EventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(AzureSpatialAnchorsSharedActivity));
-            this.StartActivity(intent);
-        }
 
         public void OnCoarseRelocDemoClick(object sender, EventArgs e)
         {
