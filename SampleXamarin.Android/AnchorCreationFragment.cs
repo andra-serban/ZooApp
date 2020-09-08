@@ -3,9 +3,12 @@
 
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Microsoft.Azure.SpatialAnchors;
+using SampleXamarin.AnchorSharing;
+using System;
 using Xamarin.Essentials;
 using static Android.Views.View;
 
@@ -101,18 +104,35 @@ namespace SampleXamarin
 
             createAnchorButton.Enabled = false;
             CloudSpatialAnchor cloudAnchor = new CloudSpatialAnchor();
+
             cloudAnchor.LocalAnchor = PlacedVisual.LocalAnchor;
             cloudAnchor.AppProperties.Add("Shape", PlacedVisual.Shape.ToString());
 
             isCreatingAnchor = true;
+            await CloudAnchorManager.CreateAnchorAsync(cloudAnchor)
+                .ContinueWith(async cloudAnchorTask =>
+                {
+                    try
+                    {
+                        CloudSpatialAnchor anchor = await cloudAnchorTask;
 
-            await CloudAnchorManager.CreateAnchorAsync(cloudAnchor);
-            if ((cloudAnchor.Identifier?.Length ?? 0) == 0)
-            {
-                OnAnchorCreationFailed?.Invoke(PlacedVisual, "Failed to create anchor");
-                return;
-            }
-
+                        string anchorId = anchor.Identifier;
+                        Log.Debug("ASADemo", "anchorId: " + anchorId);
+                        var anchorSharingServiceClient = new AnchorSharingServiceClient(AccountDetails.AnchorSharingServiceUrl);
+                        SendAnchorResponse response = await anchorSharingServiceClient.SendAnchorIdAsync(anchorId);
+                    }
+                    catch (CloudSpatialException)
+                    {
+                        // to do
+                        //this.CreateAnchorExceptionCompletion($"{ex.Message}, {ex.ErrorCode}");
+                    }
+                    catch (Exception)
+                    {
+                        // to do
+                        //this.CreateAnchorExceptionCompletion(ex.Message);
+                        //visual.SetColor(this, Color.Red);
+                    }
+                });
             AnchorVisual createdAnchor = PlacedVisual;
             PlacedVisual = null;
             OnAnchorCreated?.Invoke(createdAnchor);

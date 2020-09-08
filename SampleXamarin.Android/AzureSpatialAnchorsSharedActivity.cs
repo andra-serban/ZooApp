@@ -268,19 +268,6 @@ namespace SampleXamarin
                     if (anchorLocated)
                     {
                         this.textView.Text = "Anchor located!";
-
-                        //Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                        //AlertDialog alert = dialog.Create();
-                        //alert.SetTitle("Alert");
-                        //alert.SetMessage("Activity1 opened");
-                        //alert.SetButton("OK", (c, ev) => {
-
-                        //});
-                        //alert.Show();
-
-                        //Intent intent = new Intent(this, typeof(AnimalActivity));
-                        //intent.PutExtra("anchor", anchorId);
-                        //this.StartActivity(intent);
                     }
                     else
                     {
@@ -425,8 +412,8 @@ namespace SampleXamarin
             Log.Debug("ASADemo", "creating anchor");
             CloudSpatialAnchor cloudAnchor = new CloudSpatialAnchor();
 
-            Date d1 = new Date(2030, 11, 21);
-            cloudAnchor.Expiration = d1;
+            //Date d1 = new Date(2030, 11, 21);
+            //cloudAnchor.Expiration = d1;
 
             visual.CloudAnchor = cloudAnchor;
             cloudAnchor.LocalAnchor = visual.LocalAnchor;

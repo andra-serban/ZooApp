@@ -176,7 +176,9 @@ namespace SampleXamarin
 
         public void OnAnchorDiscovered(CloudSpatialAnchor cloudAnchor)
         {
-            AnchorVisual visual = new AnchorVisual(arFragment, cloudAnchor);
+            AnchorVisual visual = new AnchorVisual(arFragment, cloudAnchor, this);
+            // to do: maybe add an id
+            visual.SetIdentifier(cloudAnchor.Identifier);
             visual.SetColor(this, Android.Graphics.Color.Green);
             
             IDictionary<string, string> properties = cloudAnchor.AppProperties;

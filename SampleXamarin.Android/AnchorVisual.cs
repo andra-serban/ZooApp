@@ -19,6 +19,8 @@ namespace SampleXamarin
 {
     internal class AnchorVisual
     {
+        // added
+        public string identifier;
         public enum NamedShape
         {
             Sphere,
@@ -128,6 +130,11 @@ namespace SampleXamarin
             }
         }
 
+        public void SetIdentifier(string identifier)
+        {
+            this.identifier = identifier;
+        }
+
         public void Destroy()
         {
             MainThread.BeginInvokeOnMainThread(() =>
@@ -173,7 +180,7 @@ namespace SampleXamarin
                         throw new InvalidOperationException("Invalid shape");
                 }
                 transformableNode.Renderable = renderable;
-                transformableNode.SetOnTouchListener(new MyTouchListener(context));
+                transformableNode.SetOnTouchListener(new MyTouchListener(context, this.identifier));
             }
         }
     }       

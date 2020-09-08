@@ -18,9 +18,11 @@ namespace SampleXamarin
     {
 
         Context context;
-        public MyTouchListener(Context context)
+        string identifier;
+        public MyTouchListener(Context context, string identifier)
         {
             this.context = context;
+            this.identifier = identifier;
         }
         public bool OnTouch(HitTestResult p0, MotionEvent p1)
         {
@@ -35,7 +37,7 @@ namespace SampleXamarin
             //alert.Show();
 
             Intent intent = new Intent(context, typeof(AnimalActivity));
-            intent.PutExtra("anchor", 1);
+            intent.PutExtra("anchor", identifier);
             context.StartActivity(intent);
             return true;
         }
