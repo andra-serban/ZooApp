@@ -51,11 +51,11 @@ namespace SampleXamarin
 
         public Individ GetIndivid(int id)
         { 
-            DataBase db = new DataBase();
-            db.createDataBase();
+            //DataBase db = new DataBase();
+            //db.createDataBase();
 
-            if (db.selectQueryTableIndivid(id) == null)
-            {
+            //if (db.selectQueryTableIndivid(id) == null)
+            //{
                 var client = new HttpClient();
                 var uri = "https://zoo-webapp.azurewebsites.net/api/individsapi/";
                 uri += id;
@@ -63,28 +63,30 @@ namespace SampleXamarin
 
                 //handling the answer
                 Individ individ = JsonConvert.DeserializeObject<Individ>(result.Result);
-                db.insertIntoTableIndivid(individ);
-            }
+            //    db.insertIntoTableIndivid(individ);
+            //}
 
-            return db.selectQueryTableIndivid(id);
+            //return db.selectQueryTableIndivid(id);
+            return individ;
         }
        
         public Animal GetAnimal(int id)
         {
-            DataBase db = new DataBase();
-            db.createDataBase();
+            //DataBase db = new DataBase();
+            //db.createDataBase();
             
-            if (db.selectQueryTableAnimal(id) == null)
-            {
+            //if (db.selectQueryTableAnimal(id) == null)
+            //{
                 var client = new HttpClient();
                 var uri = "https://zoo-webapp.azurewebsites.net/api/animalsapi/";
                 uri += id;
                 var result = client.GetStringAsync(uri);
                 Animal animal = JsonConvert.DeserializeObject<Animal>(result.Result);
-                db.insertIntoTableAnimal(animal);
-            }
+            //    db.insertIntoTableAnimal(animal);
+            //}
 
-            return db.selectQueryTableAnimal(id);
+            //return db.selectQueryTableAnimal(id);
+            return animal;
         }
         protected override void OnCreate(Bundle savedInstanceState)
         {
