@@ -23,69 +23,58 @@ namespace SampleXamarin
     {
         public Main GetMains(string anchorId)
         {
-            var client = new HttpClient();
-            string uri = "https://zoo-webapp.azurewebsites.net/api/mainsapi/";
-            uri += anchorId;
-           
-            var result = client.GetStringAsync(uri);
+            DataBase db = new DataBase();
+            db.createDataBase();
+            Main main = db.selectQueryTableMain(anchorId);
+            if (main == null)
+            {
+                var client = new HttpClient();
+                string uri = "https://zoo-webapp.azurewebsites.net/api/mainsapi/";
+                uri += anchorId;
 
-            //handling the answer: if exc maybe not in db
-            Main individ = JsonConvert.DeserializeObject<Main>(result.Result);
-
-            //to do: make it work for main too
-
-            //DataBase db = new DataBase();
-            //db.createDataBase();
-
-            //if (db.insertIntoTableMain(individ) is true)
-            //{
-            //    return db.selectQueryTableMain(anchorId);
-            //}
-
-            //if (db.selectQueryTableMain(anchorId) == null)
-            //{
-            //    throw new Exception();
-            //}
-            return individ;
+                var result = client.GetStringAsync(uri);
+                main = JsonConvert.DeserializeObject<Main>(result.Result);
+                db.insertIntoTableMain(main);
+            }
+            
+            return main;
         }
 
         public Individ GetIndivid(int id)
-        { 
-            //DataBase db = new DataBase();
-            //db.createDataBase();
-
-            //if (db.selectQueryTableIndivid(id) == null)
-            //{
+        {
+            DataBase db = new DataBase();
+            db.createDataBase();
+            Individ individ = db.selectQueryTableIndivid(id);
+            if (individ == null)
+            {
                 var client = new HttpClient();
                 var uri = "https://zoo-webapp.azurewebsites.net/api/individsapi/";
                 uri += id;
                 var result = client.GetStringAsync(uri);
 
                 //handling the answer
-                Individ individ = JsonConvert.DeserializeObject<Individ>(result.Result);
-            //    db.insertIntoTableIndivid(individ);
-            //}
+                individ = JsonConvert.DeserializeObject<Individ>(result.Result);
+                db.insertIntoTableIndivid(individ);
+            }
 
-            //return db.selectQueryTableIndivid(id);
             return individ;
         }
        
         public Animal GetAnimal(int id)
         {
-            //DataBase db = new DataBase();
-            //db.createDataBase();
-            
-            //if (db.selectQueryTableAnimal(id) == null)
-            //{
+            DataBase db = new DataBase();
+            db.createDataBase();
+            Animal animal = db.selectQueryTableAnimal(id);
+            if (animal == null)
+            {
                 var client = new HttpClient();
                 var uri = "https://zoo-webapp.azurewebsites.net/api/animalsapi/";
                 uri += id;
                 var result = client.GetStringAsync(uri);
-                Animal animal = JsonConvert.DeserializeObject<Animal>(result.Result);
-            //    db.insertIntoTableAnimal(animal);
-            //}
+                animal = JsonConvert.DeserializeObject<Animal>(result.Result);
+                db.insertIntoTableAnimal(animal);
+            }
 
-            //return db.selectQueryTableAnimal(id);
             return animal;
         }
         protected override void OnCreate(Bundle savedInstanceState)

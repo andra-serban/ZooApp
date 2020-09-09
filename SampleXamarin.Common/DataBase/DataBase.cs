@@ -246,7 +246,7 @@ namespace ZooView.ViewModel
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
-                    return connection.Query<Animal>("SELECT * FROM Animal Where Id=?", Id).First();
+                    return connection.Query<Animal>("SELECT  EXISTS * FROM Animal Where Id=?", Id).First();
                 }
             }
             catch (SQLiteException)
@@ -261,7 +261,7 @@ namespace ZooView.ViewModel
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
-                    return connection.Query<Individ>("SELECT * FROM Individ Where Id=?", Id).First();
+                    return connection.Query<Individ>("SELECT EXISTS * FROM Individ Where Id=?", Id).First();
                 }
             }
             catch (SQLiteException)
@@ -276,7 +276,7 @@ namespace ZooView.ViewModel
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
-                    return connection.Query<Main>("SELECT * FROM Main Where Ancora=?", Id).First();
+                    return connection.Query<Main>("SELECT EXISTS * FROM Main Where Ancora=?", Id).First();
                 }
             }
             catch (SQLiteException)
