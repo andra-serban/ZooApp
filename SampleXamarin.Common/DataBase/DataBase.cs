@@ -8,7 +8,7 @@ namespace ZooView.ViewModel
     public class DataBase
     {
         string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-        public bool createDataBase()
+        public bool CreateDataBase()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool insertIntoTableAnimal(Animal animal)
+        public bool InsertIntoTableAnimal(Animal animal)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace ZooView.ViewModel
         }
 
 
-        public bool insertIntoTableIndivid(Individ individ)
+        public bool InsertIntoTableIndivid(Individ individ)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool insertIntoTableMainIstoric(MainHistory individ)
+        public bool InsertIntoTableMainIstoric(MainHistory individ)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool insertIntoTableMain(Main individ)
+        public bool InsertIntoTableMain(Main individ)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool insertIntoTablePozaIndivid(IndividImages individ)
+        public bool InsertIntoTablePozaIndivid(IndividImages individ)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool insertIntoTableZooInfo(ZooInfo individ)
+        public bool InsertIntoTableZooInfo(ZooInfo individ)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace ZooView.ViewModel
         }
 
 
-        public List<Animal> selectTableAnimal()
+        public List<Animal> SelectTableAnimal()
         {
             try
             {
@@ -143,7 +143,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public List<Individ> selectTableIndivid()
+        public List<Individ> SelectTableIndivid()
         {
             try
             {
@@ -159,7 +159,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public List<MainHistory> selectTableMainIstoric()
+        public List<MainHistory> SelectTableMainIstoric()
         {
             try
             {
@@ -175,7 +175,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public List<Main> selectTableMain()
+        public List<Main> SelectTableMain()
         {
             try
             {
@@ -191,7 +191,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public List<IndividImages> selectTablePozaIndivid()
+        public List<IndividImages> SelectTablePozaIndivid()
         {
             try
             {
@@ -207,7 +207,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public List<ZooInfo> selectTableZooInfo()
+        public List<ZooInfo> SelectTableZooInfo()
         {
             try
             {
@@ -224,7 +224,7 @@ namespace ZooView.ViewModel
         }
 
 
-        public bool deleteTableAnimal(Animal animal)
+        public bool DeleteTableAnimal(Animal animal)
         {
             try
             {
@@ -240,7 +240,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public Animal selectQueryTableAnimal(int Id)
+        public Animal SelectQueryTableAnimal(int Id)
         {
             try
             {
@@ -255,7 +255,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public Individ selectQueryTableIndivid(int Id)
+        public Individ SelectQueryTableIndivid(int Id)
         {
             try
             {
@@ -270,7 +270,7 @@ namespace ZooView.ViewModel
             }
         }
 
-        public Main selectQueryTableMain(string Id)
+        public Main SelectQueryTableMain(string Id)
         {
             try
             {

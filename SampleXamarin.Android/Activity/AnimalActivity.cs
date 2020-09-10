@@ -24,8 +24,8 @@ namespace SampleXamarin
         public Main GetMains(string anchorId)
         {
             DataBase db = new DataBase();
-            db.createDataBase();
-            Main main = db.selectQueryTableMain(anchorId);
+            db.CreateDataBase();
+            Main main = db.SelectQueryTableMain(anchorId);
             if (main == null)
             {
                 var client = new HttpClient();
@@ -34,7 +34,7 @@ namespace SampleXamarin
 
                 var result = client.GetStringAsync(uri);
                 main = JsonConvert.DeserializeObject<Main>(result.Result);
-                db.insertIntoTableMain(main);
+                db.InsertIntoTableMain(main);
             }
             
             return main;
@@ -43,8 +43,8 @@ namespace SampleXamarin
         public Individ GetIndivid(int id)
         {
             DataBase db = new DataBase();
-            db.createDataBase();
-            Individ individ = db.selectQueryTableIndivid(id);
+            db.CreateDataBase();
+            Individ individ = db.SelectQueryTableIndivid(id);
             if (individ == null)
             {
                 var client = new HttpClient();
@@ -54,7 +54,7 @@ namespace SampleXamarin
 
                 //handling the answer
                 individ = JsonConvert.DeserializeObject<Individ>(result.Result);
-                db.insertIntoTableIndivid(individ);
+                db.InsertIntoTableIndivid(individ);
             }
 
             return individ;
@@ -63,8 +63,8 @@ namespace SampleXamarin
         public Animal GetAnimal(int id)
         {
             DataBase db = new DataBase();
-            db.createDataBase();
-            Animal animal = db.selectQueryTableAnimal(id);
+            db.CreateDataBase();
+            Animal animal = db.SelectQueryTableAnimal(id);
             if (animal == null)
             {
                 var client = new HttpClient();
@@ -72,7 +72,7 @@ namespace SampleXamarin
                 uri += id;
                 var result = client.GetStringAsync(uri);
                 animal = JsonConvert.DeserializeObject<Animal>(result.Result);
-                db.insertIntoTableAnimal(animal);
+                db.InsertIntoTableAnimal(animal);
             }
 
             return animal;
