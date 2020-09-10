@@ -16,17 +16,17 @@ using Zoo.Models;
 
 namespace SampleXamarin.Adapters
 {
-    public class AnimalAdapter : BaseAdapter<Animal>
+    public class IndividInfoAdapter : BaseAdapter<IndividInfo>
     {
-        List<Animal> items;
+        List<IndividInfo> items;
         Activity context;
-        public AnimalAdapter(Activity context, List<Animal> items)
+        public IndividInfoAdapter(Activity context, List<IndividInfo> items)
         : base()
         {
             this.context = context;
             this.items = items;
         }
-        public override Animal this[int position]
+        public override IndividInfo this[int position]
         {
             get { return items[position]; }
         }
@@ -47,14 +47,20 @@ namespace SampleXamarin.Adapters
             var item = items[position];
             View view = convertView;
             if (view == null) // no view to re-use, create new
-                view = context.LayoutInflater.Inflate(Resource.Layout.animal_layout, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.individ_info, null);
+            view.FindViewById<TextView>(Resource.Id.individName).Text = item.individ.Name;
+            view.FindViewById<TextView>(Resource.Id.individBio).Text = item.individ.Bio;
+            if (item.images.Image1 != null)
+            {
+                var imageBitmap1 = GetImageBitmapFromUrl(item.images.Image1);
+                view.FindViewById<ImageView>(Resource.Id.Image1).SetImageBitmap(imageBitmap1);
+            }
+            if (item.images.Image2 != null)
+            {
+                var imageBitmap2 = GetImageBitmapFromUrl(item.images.Image2);
+                view.FindViewById<ImageView>(Resource.Id.Image2).SetImageBitmap(imageBitmap2);
+            }
 
-            view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Specie;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = item.CommonName;
-            view.FindViewById<TextView>(Resource.Id.Text3).Text = item.MaxWeight.ToString() + " kg";
-
-            var imageBitmap = GetImageBitmapFromUrl(item.Image);
-            view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(imageBitmap);
             return view;
         }
 
@@ -74,4 +80,5 @@ namespace SampleXamarin.Adapters
             return imageBitmap;
         }
     }
+
 }
