@@ -1,4 +1,5 @@
 using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Zoo.Models;
@@ -7,13 +8,16 @@ namespace ZooView.ViewModel
 {
     public class DataBase
     {
-        string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+        readonly string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+
         public bool CreateDataBase()
         {
             try
             {
                 using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
                 {
+                    //Type currentType = typeof(Animal);
+                    //connection.CreateTable<currentType>();
                     connection.CreateTable<Animal>();
                     connection.CreateTable<Individ>();
                     connection.CreateTable<MainHistory>();

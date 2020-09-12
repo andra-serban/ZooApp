@@ -16,22 +16,24 @@ namespace SampleXamarin
 {
     class AnchorTouchListener : Java.Lang.Object, IOnTouchListener
     {
-
-        Context context;
+        readonly Context Context;
         string identifier;
+
         public AnchorTouchListener(Context context, string identifier)
         {
-            this.context = context;
+            this.Context = context;
             this.identifier = identifier;
         }
+        
         public bool OnTouch(HitTestResult p0, MotionEvent p1)
         {
             if (p1.Action == MotionEventActions.Down)
             {
-                Intent intent = new Intent(context, typeof(AnimalActivity));
+                Intent intent = new Intent(Context, typeof(AnimalActivity));
                 intent.PutExtra("anchor", identifier);
-                context.StartActivity(intent);
+                Context.StartActivity(intent);
             }
+
             return true;
         }
     }

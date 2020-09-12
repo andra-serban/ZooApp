@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="ActionSelectionFragment.cs" />
     <Compile Include="Activity\IndividActivity.cs" />
+    <Compile Include="Adapters\BitmapImage.cs" />
     <Compile Include="Adapters\IndifidInfoAdapter.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="Adapters\IndividInfo.cs" />
@@ -181,15 +182,12 @@
     <AndroidResource Include="Resources\drawable\backround.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\newBackround.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\cropBackround.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\individ_info.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

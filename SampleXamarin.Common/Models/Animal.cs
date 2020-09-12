@@ -10,6 +10,5 @@ namespace Zoo.Models
         public string Specie { get; set; }
         public int MaxWeight { get; set; }
         public string Image { get; set; }
-
     }
 }

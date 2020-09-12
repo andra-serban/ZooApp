@@ -52,26 +52,10 @@ namespace SampleXamarin.Adapters
             view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Specie;
             view.FindViewById<TextView>(Resource.Id.Text2).Text = item.CommonName;
             view.FindViewById<TextView>(Resource.Id.Text3).Text = item.MaxWeight.ToString() + " kg";
-
-            var imageBitmap = GetImageBitmapFromUrl(item.Image);
+            var imageBitmap = BitmapImage.GetImageBitmapFromUrl(item.Image);
             view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(imageBitmap);
+
             return view;
-        }
-
-        private Android.Graphics.Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Android.Graphics.Bitmap imageBitmap = null;
-            if (!(url == "null"))
-                using (var webClient = new WebClient())
-                {
-                    var imageBytes = webClient.DownloadData(url);
-                    if (imageBytes != null && imageBytes.Length > 0)
-                    {
-                        imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    }
-                }
-
-            return imageBitmap;
         }
     }
 }

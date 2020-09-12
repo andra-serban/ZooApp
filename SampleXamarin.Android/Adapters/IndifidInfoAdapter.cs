@@ -52,33 +52,18 @@ namespace SampleXamarin.Adapters
             view.FindViewById<TextView>(Resource.Id.individBio).Text = item.individ.Bio;
             if (item.images.Image1 != null)
             {
-                var imageBitmap1 = GetImageBitmapFromUrl(item.images.Image1);
+                var imageBitmap1 = BitmapImage.GetImageBitmapFromUrl(item.images.Image1);
                 view.FindViewById<ImageView>(Resource.Id.Image1).SetImageBitmap(imageBitmap1);
             }
             if (item.images.Image2 != null)
             {
-                var imageBitmap2 = GetImageBitmapFromUrl(item.images.Image2);
+                var imageBitmap2 = BitmapImage.GetImageBitmapFromUrl(item.images.Image2);
                 view.FindViewById<ImageView>(Resource.Id.Image2).SetImageBitmap(imageBitmap2);
             }
 
             return view;
         }
 
-        private Android.Graphics.Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Android.Graphics.Bitmap imageBitmap = null;
-            if (!(url == "null"))
-                using (var webClient = new WebClient())
-                {
-                    var imageBytes = webClient.DownloadData(url);
-                    if (imageBytes != null && imageBytes.Length > 0)
-                    {
-                        imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    }
-                }
-
-            return imageBitmap;
-        }
     }
 
 }

@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using Java.Lang;
 using Newtonsoft.Json;
 using SampleXamarin.Adapters;
 using Zoo.Models;
@@ -22,6 +16,9 @@ namespace SampleXamarin
     public class AnimalActivity : ListActivity
     {
         public Individ individ;
+        public const string mainUri = "https://zoo-webapp.azurewebsites.net/api/mainsapi/";
+        public const string individUri = "https://zoo-webapp.azurewebsites.net/api/individsapi/";
+        public const string animalUri = "https://zoo-webapp.azurewebsites.net/api/animalsapi/";
         public Main GetMains(string anchorId)
         {
             DataBase db = new DataBase();
@@ -29,11 +26,11 @@ namespace SampleXamarin
             Main main = db.SelectQueryTableMain(anchorId);
             if (main == null)
             {
-                var client = new HttpClient();
-                string uri = "https://zoo-webapp.azurewebsites.net/api/mainsapi/";
+                HttpClient client = new HttpClient();
+                string uri = mainUri;
                 uri += anchorId;
 
-                var result = client.GetStringAsync(uri);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(uri);
                 main = JsonConvert.DeserializeObject<Main>(result.Result);
                 db.InsertIntoTableMain(main);
             }
@@ -48,10 +45,10 @@ namespace SampleXamarin
             Individ individ = db.SelectQueryTableIndivid(id);
             if (individ == null)
             {
-                var client = new HttpClient();
-                var uri = "https://zoo-webapp.azurewebsites.net/api/individsapi/";
+                HttpClient client = new HttpClient();
+                string uri = individUri;
                 uri += id;
-                var result = client.GetStringAsync(uri);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(uri);
 
                 //handling the answer
                 individ = JsonConvert.DeserializeObject<Individ>(result.Result);
@@ -68,10 +65,10 @@ namespace SampleXamarin
             Animal animal = db.SelectQueryTableAnimal(id);
             if (animal == null)
             {
-                var client = new HttpClient();
-                var uri = "https://zoo-webapp.azurewebsites.net/api/animalsapi/";
+                HttpClient client = new HttpClient();
+                string uri = animalUri;
                 uri += id;
-                var result = client.GetStringAsync(uri);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(uri);
                 animal = JsonConvert.DeserializeObject<Animal>(result.Result);
                 db.InsertIntoTableAnimal(animal);
             }
@@ -83,13 +80,14 @@ namespace SampleXamarin
             base.OnCreate(savedInstanceState);
             this.SetContentView(Resource.Layout.animal_layout);
 
-            var anchor = Intent.GetStringExtra("anchor");
-            var main = GetMains(anchor);
+            string anchor = Intent.GetStringExtra("anchor");
+            Main main = GetMains(anchor);
             individ = GetIndivid(main.Idindivid);
-            var animal = GetAnimal(individ.Idanimal);
+            Animal animal = GetAnimal(individ.Idanimal);
 
             AnimalAdapter adapter = new AnimalAdapter(this, new List<Animal>() {animal});
             ListView.Adapter = adapter;
+
             Button backButton = this.FindViewById<Button>(Resource.Id.BackButton);
             backButton.Click += this.OnBackClick;
             Button viewMoreButton = this.FindViewById<Button>(Resource.Id.ViewMoreButton);
@@ -106,7 +104,6 @@ namespace SampleXamarin
             Intent intent = new Intent(this, typeof(IndividActivity));
             intent.PutExtra("individ", JsonConvert.SerializeObject(individ));
             this.StartActivity(intent);
-
         }
     }
 }
