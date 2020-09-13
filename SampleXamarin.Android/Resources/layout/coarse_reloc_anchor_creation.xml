@@ -37,7 +37,7 @@
                     android:id="@+id/required_scan_progress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="@dimen/design_bottom_navigation_shadow_height"
                     style="?android:attr/progressBarStyleHorizontal"/>
             </TableRow>
             <TableRow
@@ -53,7 +53,7 @@
                     android:id="@+id/recommended_scan_progress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="@dimen/design_bottom_navigation_shadow_height"
                     style="?android:attr/progressBarStyleHorizontal"/>
             </TableRow>
         </TableLayout>
@@ -63,7 +63,7 @@
     <Space
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="@dimen/mtrl_textinput_box_stroke_width_default" />
 
     <Button
         android:id="@+id/create_anchor"
