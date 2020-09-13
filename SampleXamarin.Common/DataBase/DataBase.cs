@@ -9,21 +9,23 @@ namespace ZooView.ViewModel
     public class DataBase
     {
         readonly string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+        public const string dataBase = "Animals.db";
 
-        public bool CreateDataBase()
+        public async System.Threading.Tasks.Task<bool> CreateDataBaseAsync()
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    //Type currentType = typeof(Animal);
-                    //connection.CreateTable<currentType>();
-                    connection.CreateTable<Animal>();
-                    connection.CreateTable<Individ>();
-                    connection.CreateTable<MainHistory>();
-                    connection.CreateTable<Main>();
-                    connection.CreateTable<ZooInfo>();
-                    connection.CreateTable<IndividImages>();
+                SQLiteAsyncConnection connection = new SQLiteAsyncConnection(System.IO.Path.Combine(folder, dataBase));                {
+  
+                    foreach(Type tableType in new Type[] { typeof(Animal),
+                        typeof(Individ), 
+                        typeof(MainHistory), 
+                        typeof(Main), 
+                        typeof(ZooInfo), 
+                        typeof(IndividImages)})
+                    {
+                            await connection.CreateTablesAsync(CreateFlags.None, tableType).ConfigureAwait(false);
+                    }
                     return true;
                 }
             }
@@ -33,222 +35,53 @@ namespace ZooView.ViewModel
             }
         }
 
-        public bool InsertIntoTableAnimal(Animal animal)
+        public bool InsertIntoTable(Object objectToBeInserted)
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(animal);
-                    return true;
-                }
+                SQLiteConnection connection = new SQLiteConnection(System.IO.Path.Combine(folder, dataBase));
+                connection.Insert(objectToBeInserted);
+                return true;
+                
             }
             catch (SQLiteException)
             {
                 return false;
             }
+
+        }
+
+        public bool InsertIntoTableAnimal(Animal animal)
+        {
+            return InsertIntoTable(animal);
         }
 
 
         public bool InsertIntoTableIndivid(Individ individ)
         {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(individ);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
+            return InsertIntoTable(individ);
         }
 
-        public bool InsertIntoTableMainIstoric(MainHistory individ)
+        public bool InsertIntoTableMainIstoric(MainHistory mainHistory)
         {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(individ);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
+            return InsertIntoTable(mainHistory);
         }
 
-        public bool InsertIntoTableMain(Main individ)
+        public bool InsertIntoTableMain(Main main)
         {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(individ);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
+            return InsertIntoTable(main);
         }
 
-        public bool InsertIntoTableIndividImages(IndividImages individ)
+        public bool InsertIntoTableIndividImages(IndividImages individImages)
         {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(individ);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
-        }
-
-        public bool InsertIntoTableZooInfo(ZooInfo individ)
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Insert(individ);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
-        }
-
-
-        public List<Animal> SelectTableAnimal()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<Animal>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-        public List<Individ> SelectTableIndivid()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<Individ>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-        public List<MainHistory> SelectTableMainIstoric()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<MainHistory>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-        public List<Main> SelectTableMain()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<Main>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-        public List<IndividImages> SelectTablePozaIndivid()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<IndividImages>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-        public List<ZooInfo> SelectTableZooInfo()
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    return connection.Table<ZooInfo>().ToList();
-
-                }
-            }
-            catch (SQLiteException)
-            {
-                return null;
-            }
-        }
-
-
-        public bool DeleteTableAnimal(Animal animal)
-        {
-            try
-            {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
-                {
-                    connection.Delete(animal);
-                    return true;
-                }
-            }
-            catch (SQLiteException)
-            {
-                return false;
-            }
+            return InsertIntoTable(individImages);
         }
 
         public Animal SelectQueryTableAnimal(int Id)
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
+                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, dataBase)))
                 {
                     return connection.Query<Animal>("SELECT  EXISTS * FROM Animal Where Id=?", Id).First();
                 }
@@ -263,7 +96,7 @@ namespace ZooView.ViewModel
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
+                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, dataBase)))
                 {
                     return connection.Query<Individ>("SELECT EXISTS * FROM Individ Where Id=?", Id).First();
                 }
@@ -278,7 +111,7 @@ namespace ZooView.ViewModel
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
+                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, dataBase)))
                 {
                     return connection.Query<Main>("SELECT EXISTS * FROM Main Where Ancora=?", Id).First();
                 }
@@ -293,7 +126,7 @@ namespace ZooView.ViewModel
         {
             try
             {
-                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, "Animals.db")))
+                using (var connection = new SQLiteConnection(System.IO.Path.Combine(folder, dataBase)))
                 {
                     return connection.Query<IndividImages>("SELECT EXISTS * FROM IndividImages Where Idindivid=?", Id).First();
                 }
