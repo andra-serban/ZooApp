@@ -33,7 +33,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="@dimen/cardview_compat_inset_shadow"/>
 
             <SampleXamarin.SensorStatusView
                 android:layout_width="wrap_content"
