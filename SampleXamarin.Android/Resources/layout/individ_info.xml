@@ -1,9 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minHeight="50dp"
     android:orientation="horizontal">
-     <Button
+    <Button
         android:text="@string/back_button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,30 +16,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ViewButton"
-        android:layout_below="@id/BackButton"/> 
+        android:layout_below="@id/BackButton"/>
 
-      <ListView android:id="@android:id/list"
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 
     <TextView
-       android:layout_below="@id/ViewButton"
-       android:id="@+id/individName"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:singleLine="true"
-       android:textSize="20dip"
-       android:textStyle="bold"/>
+        android:layout_below="@id/ViewButton"
+        android:id="@+id/individName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:textSize="20dip"
+        android:textStyle="bold"/>
 
     <TextView
-      android:id="@+id/individBio"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:singleLine="true"
-      android:layout_below="@id/individName"
-      android:textSize="15dip" />
+        android:id="@+id/individBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:layout_below="@id/individName"
+        android:textSize="15dip" />
 
     <ImageView
         android:id="@+id/Image1"
