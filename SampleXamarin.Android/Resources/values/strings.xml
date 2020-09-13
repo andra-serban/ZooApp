@@ -33,5 +33,5 @@
   <string name="hint_scan_for_creation">💡 Look around the anchor to scan the environment.</string>
   <string name="back">Back</string>
   <string name="large_circle">⬤</string>
-	
+	<string name="description">Images</string>
 </resources>
