@@ -74,8 +74,8 @@ namespace SampleXamarin
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //this.SetContentView(Resource.Layout.individ_info);
             string anchor = Intent.GetStringExtra("anchor");
+            this.SetContentView(Resource.Layout.individ_info);
 
             DataBase db = new DataBase();
             db.CreateDataBase();
@@ -87,14 +87,13 @@ namespace SampleXamarin
             IndividImages individImages = GetImages(individ.Id, db, client);
 
             IndividInfo individInfo = new IndividInfo(individ, individImages);
-            IndividInfoAdapter adapter = new IndividInfoAdapter(this, new List<IndividInfo>() {individInfo});
-            ListView.FindViewById(Resource.Id.ListView);
+            IndividInfoAdapter adapter = new IndividInfoAdapter(this, new List<IndividInfo>() { individInfo });
             ListView.Adapter = adapter;
 
-            //Button backButton = this.FindViewById<Button>(Resource.Id.BackButton);
-            //backButton.Click += this.OnBackClick;
-            //Button viewMoreButton = this.FindViewById<Button>(Resource.Id.ViewButton);
-            //viewMoreButton.Click += this.OnViewClick;
+            Button backButton = this.FindViewById<Button>(Resource.Id.BackButton);
+            backButton.Click += this.OnBackClick;
+            Button viewMoreButton = this.FindViewById<Button>(Resource.Id.ViewButton);
+            viewMoreButton.Click += this.OnViewClick;
         }
 
         public void OnBackClick(object sender, EventArgs e)
