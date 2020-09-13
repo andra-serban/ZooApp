@@ -8,7 +8,6 @@
     android:background="@drawable/backround" 
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@mipmap/backgroud"
     tools:context=".MainActivity">
 
     <TextView

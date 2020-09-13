@@ -24,12 +24,12 @@ namespace SampleXamarin
             this.Context = context;
             this.identifier = identifier;
         }
-        
+
         public bool OnTouch(HitTestResult p0, MotionEvent p1)
         {
             if (p1.Action == MotionEventActions.Down)
             {
-                Intent intent = new Intent(Context, typeof(AnimalActivity));
+                Intent intent = new Intent(Context, typeof(IndividActivity));
                 intent.PutExtra("anchor", identifier);
                 Context.StartActivity(intent);
             }

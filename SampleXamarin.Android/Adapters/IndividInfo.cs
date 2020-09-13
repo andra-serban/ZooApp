@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Zoo.Models;
+﻿using Zoo.Models;
 
 namespace SampleXamarin.Adapters
 {
@@ -17,6 +6,7 @@ namespace SampleXamarin.Adapters
     {
         public Individ individ;
         public IndividImages images;
+
         public IndividInfo(Individ individ, IndividImages images)
         {
             this.individ = individ;

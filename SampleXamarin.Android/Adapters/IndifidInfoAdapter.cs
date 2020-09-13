@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-
+﻿using System.Collections.Generic;
 using Android.App;
-using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Zoo.Models;
 
 namespace SampleXamarin.Adapters
 {
     public class IndividInfoAdapter : BaseAdapter<IndividInfo>
     {
-        List<IndividInfo> items;
-        Activity context;
+        private readonly List<IndividInfo> items;
+        private readonly Activity context;
+
         public IndividInfoAdapter(Activity context, List<IndividInfo> items)
         : base()
         {
             this.context = context;
             this.items = items;
         }
+
         public override IndividInfo this[int position]
         {
             get { return items[position]; }
@@ -44,7 +36,7 @@ namespace SampleXamarin.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var item = items[position];
+            IndividInfo item = items[position];
             View view = convertView;
             if (view == null) // no view to re-use, create new
                 view = context.LayoutInflater.Inflate(Resource.Layout.individ_info, null);
@@ -52,12 +44,12 @@ namespace SampleXamarin.Adapters
             view.FindViewById<TextView>(Resource.Id.individBio).Text = item.individ.Bio;
             if (item.images.Image1 != null)
             {
-                var imageBitmap1 = BitmapImage.GetImageBitmapFromUrl(item.images.Image1);
+                Bitmap imageBitmap1 = BitmapImage.GetImageBitmapFromUrl(item.images.Image1);
                 view.FindViewById<ImageView>(Resource.Id.Image1).SetImageBitmap(imageBitmap1);
             }
             if (item.images.Image2 != null)
             {
-                var imageBitmap2 = BitmapImage.GetImageBitmapFromUrl(item.images.Image2);
+                Bitmap imageBitmap2 = BitmapImage.GetImageBitmapFromUrl(item.images.Image2);
                 view.FindViewById<ImageView>(Resource.Id.Image2).SetImageBitmap(imageBitmap2);
             }
 
