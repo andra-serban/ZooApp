@@ -21,12 +21,12 @@ namespace SampleXamarin
 
         public Main GetMains(string anchorId, DataBase db, HttpClient client)
         {
-            Main main = db.SelectQueryTableMain(anchorId);
+            Main main = (Main)db.SelectQueryTable(anchorId, Constants.Constants.selectMainQuery);
             if (main == null)
             {
-                System.Threading.Tasks.Task<string> result = client.GetStringAsync(WebConstants.mainUri + anchorId);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(Constants.Constants.mainUri + anchorId);
                 main = JsonConvert.DeserializeObject<Main>(result.Result);
-                db.InsertIntoTableMain(main);
+                db.InsertIntoTable(main);
             }
 
             return main;
@@ -34,12 +34,12 @@ namespace SampleXamarin
 
         public Individ GetIndivid(int id, DataBase db, HttpClient client)
         {
-            Individ individ = db.SelectQueryTableIndivid(id);
+            Individ individ = (Individ)db.SelectQueryTable(id, Constants.Constants.selectIndividQuery);
             if (individ == null)
             {
-                System.Threading.Tasks.Task<string> result = client.GetStringAsync(WebConstants.individUri + id);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(Constants.Constants.individUri + id);
                 individ = JsonConvert.DeserializeObject<Individ>(result.Result);
-                db.InsertIntoTableIndivid(individ);
+                db.InsertIntoTable(individ);
             }
 
             return individ;
@@ -47,12 +47,12 @@ namespace SampleXamarin
 
         public Animal GetAnimal(int id, DataBase db, HttpClient client)
         {
-            Animal animal = db.SelectQueryTableAnimal(id);
+            Animal animal = (Animal)db.SelectQueryTable(id, Constants.Constants.selectAnimalQuery);
             if (animal == null)
             {
-                System.Threading.Tasks.Task<string> result = client.GetStringAsync(WebConstants.animalUri + id);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(Constants.Constants.animalUri + id);
                 animal = JsonConvert.DeserializeObject<Animal>(result.Result);
-                db.InsertIntoTableAnimal(animal);
+                db.InsertIntoTable(animal);
             }
 
             return animal;
@@ -60,12 +60,12 @@ namespace SampleXamarin
 
         public IndividImages GetImages(int id, DataBase db, HttpClient client)
         {
-            IndividImages images = db.SelectQueryTableIndividImages(id);
+            IndividImages images = (IndividImages)db.SelectQueryTable(id, Constants.Constants.selectImagesQuery);
             if (images == null)
             {
-                System.Threading.Tasks.Task<string> result = client.GetStringAsync(WebConstants.imagesUri + id);
+                System.Threading.Tasks.Task<string> result = client.GetStringAsync(Constants.Constants.imagesUri + id);
                 images = JsonConvert.DeserializeObject<IndividImages>(result.Result);
-                db.InsertIntoTableIndividImages(images);
+                db.InsertIntoTable(images);
             }
 
             return images;
@@ -78,7 +78,7 @@ namespace SampleXamarin
             this.SetContentView(Resource.Layout.individ_info);
 
             DataBase db = new DataBase();
-            db.CreateDataBase();
+            _ = db.CreateDataBaseAsync();
             HttpClient client = new HttpClient();
 
             Main main = GetMains(anchor, db, client);
