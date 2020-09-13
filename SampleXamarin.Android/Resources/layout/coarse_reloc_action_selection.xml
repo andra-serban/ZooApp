@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:orientation="horizontal">
 
     <Button
         android:id="@+id/add_anchor"
@@ -16,7 +17,7 @@
     <Space
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="@dimen/cardview_compat_inset_shadow" />
 
     <Button
         android:id="@+id/start_watcher"

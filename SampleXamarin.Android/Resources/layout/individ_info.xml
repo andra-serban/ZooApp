@@ -48,7 +48,8 @@
         android:layout_height="300dp"
         android:layout_below="@id/individBio"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="0.0dp" />
+        android:layout_marginBottom="0.0dp"
+        android:contentDescription="@string/__arcore_cancel" />
 
     <ImageView
         android:id="@+id/Image2"
@@ -56,6 +57,7 @@
         android:layout_height="300dp"
         android:layout_below="@id/Image1"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="0.0dp" />
+        android:layout_marginBottom="0.0dp"
+        android:contentDescription="@string/__arcore_cancel" />
 
 </RelativeLayout>
